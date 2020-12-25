@@ -5,7 +5,7 @@ import android.view.View;
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.mvplibrary.base.BasePresenter;
 
-public class HomeFragment extends BaseFragment {
+public class ClassificationFragment extends BaseFragment {
     @Override
     protected BasePresenter getPresnter() {
         return null;

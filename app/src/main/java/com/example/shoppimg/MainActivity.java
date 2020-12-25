@@ -10,6 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shoppimg.fragment.ClassificationFragment;
+import com.example.shoppimg.fragment.HomeFragment;
+import com.example.shoppimg.fragment.ItsmineFragment;
+import com.example.shoppimg.fragment.ShoppingcartFragment;
+import com.example.shoppimg.fragment.SpecialFragment;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvl;
@@ -19,13 +27,18 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton button3;
     private RadioButton button4;
     private RadioButton button5;
+    private HomeFragment homeFragment;
+    private SpecialFragment specialFragment;
+    private ArrayList<Fragment> frag;
+    private ClassificationFragment classificationFragment;
+    private ShoppingcartFragment shoppingcartFragment;
+    private ItsmineFragment itsmineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        addFragment();
     }
 
     private void addFragment(Fragment fragment) {
@@ -49,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
         button4 = (RadioButton) findViewById(R.id.button_4);
         button5 = (RadioButton) findViewById(R.id.button_5);
         radioGroup.check(R.id.button_1);
-        
+        homeFragment = new HomeFragment();
+        specialFragment = new SpecialFragment();
+        classificationFragment = new ClassificationFragment();
+        shoppingcartFragment = new ShoppingcartFragment();
+        itsmineFragment = new ItsmineFragment();
+        frag = new ArrayList<>();
+        frag.add(homeFragment);
+        frag.add(specialFragment);
+        frag.add(classificationFragment);
+        frag.add(shoppingcartFragment);
+        frag.add(itsmineFragment);
+        addFragment(homeFragment);
     }
 }

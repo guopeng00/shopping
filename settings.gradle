@@ -1,2 +1,3 @@
+include ':Mvplibrary'
 include ':app'
 rootProject.name = "shoppimg"
