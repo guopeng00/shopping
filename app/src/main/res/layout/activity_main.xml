@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/rvl"
+        android:layout_width="match_parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_height="0dp"/>
+    <!--最下边为RadioGroup-->
+    <RadioGroup
+        app:layout_constraintTop_toBottomOf="@+id/rvl"
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--第一个RadioButton-->
+        <RadioButton
+            android:id="@+id/button_1"
+            android:text="button_1"
+            android:button="@null"
+            android:textColor="@color/radiobutton_color_selector"
+            android:background="@drawable/radiobutton_bg_selector"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/radiobutton_pic_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--第二个RadioButton-->
+        <RadioButton
+            android:id="@+id/button_2"
+            android:text="button_2"
+            android:button="@null"
+            android:textColor="@color/radiobutton_color_selector"
+            android:background="@drawable/radiobutton_bg_selector"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/radiobutton_pic_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--第三个RadioButton-->
+        <RadioButton
+            android:id="@+id/button_3"
+            android:text="button_3"
+            android:button="@null"
+            android:textColor="@color/radiobutton_color_selector"
+            android:background="@drawable/radiobutton_bg_selector"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/radiobutton_pic_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--第四个RadioButton-->
+        <RadioButton
+            android:id="@+id/button_4"
+            android:text="button_4"
+            android:button="@null"
+            android:textColor="@color/radiobutton_color_selector"
+            android:background="@drawable/radiobutton_bg_selector"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/radiobutton_pic_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
