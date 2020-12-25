@@ -1,7 +1,6 @@
 package com.example.mvplibrary.utils.net;
 
 import java.util.HashMap;
-
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.FieldMap;

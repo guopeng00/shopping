@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.mvplibrary.base.BasePresenter;
+import com.example.shoppimg.R;
 
 public class ItsmineFragment extends BaseFragment {
     @Override
@@ -23,6 +24,6 @@ public class ItsmineFragment extends BaseFragment {
 
     @Override
     protected int getLayoutID() {
-        return 0;
+        return R.layout.fragment_itsmine;
     }
 }
