@@ -5,9 +5,10 @@ import android.view.View;
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.mvplibrary.base.BasePresenter;
 import com.example.shoppimg.R;
+import com.example.shoppimg.contract.MainContract;
 import com.example.shoppimg.presenter.MainPresenter;
 
-public class SpecialFragment extends BaseFragment<MainPresenter> {
+public class SpecialFragment extends BaseFragment<MainPresenter> implements MainContract.IView {
     @Override
     protected MainPresenter getPresnter() {
         return new MainPresenter();
@@ -25,5 +26,15 @@ public class SpecialFragment extends BaseFragment<MainPresenter> {
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_special;
+    }
+
+    @Override
+    public void onShow(Object object) {
+
+    }
+
+    @Override
+    public void onHide(String str) {
+
     }
 }

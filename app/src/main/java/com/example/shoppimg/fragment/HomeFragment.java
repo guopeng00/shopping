@@ -9,11 +9,20 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.shoppimg.R;
+import com.example.shoppimg.adapter.SingleLayout2Adapter;
 import com.example.shoppimg.adapter.SingleLayoutAdapter;
+import com.example.shoppimg.bean.ShoppingBean;
+import com.example.shoppimg.contract.MainContract;
 import com.example.shoppimg.presenter.MainPresenter;
 
-public class HomeFragment extends BaseFragment<MainPresenter> {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class HomeFragment extends BaseFragment<MainPresenter> implements MainContract.IView {
     private RecyclerView rlvHome;
+    private ArrayList<ShoppingBean.DataBean.BannerBean> bannerBeans;
+    private SingleLayout2Adapter mAdapter2;
+    private SingleLayoutHelper singleLayoutHelper;
 
     @Override
     protected MainPresenter getPresnter() {
@@ -33,16 +42,33 @@ public class HomeFragment extends BaseFragment<MainPresenter> {
         rlvHome.setRecycledViewPool(recycledViewPool);
         recycledViewPool.setMaxRecycledViews(0, 10);
 
-        SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
-        SingleLayoutAdapter singleLayoutAdapter = new SingleLayoutAdapter(singleLayoutHelper,getActivity());
+        singleLayoutHelper = new SingleLayoutHelper();
+        SingleLayoutAdapter singleLayoutAdapter1 = new SingleLayoutAdapter(getActivity(), singleLayoutHelper);
+        bannerBeans = new ArrayList<>();
+        mAdapter2 = new SingleLayout2Adapter(getActivity(), singleLayoutHelper, bannerBeans);
 
         DelegateAdapter adapter = new DelegateAdapter(virtualLayoutManager, true);
-        adapter.addAdapter(singleLayoutAdapter);//第一行
+        adapter.addAdapter(singleLayoutAdapter1);//第一行
+        adapter.addAdapter(mAdapter2);//第二行
         rlvHome.setLayoutManager(virtualLayoutManager);
+        rlvHome.setAdapter(adapter);
     }
 
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    public void onShow(Object object) {
+        if(object instanceof ShoppingBean){
+            ShoppingBean shoppingBean= (ShoppingBean) object;
+
+        }
+    }
+
+    @Override
+    public void onHide(String str) {
+
     }
 }

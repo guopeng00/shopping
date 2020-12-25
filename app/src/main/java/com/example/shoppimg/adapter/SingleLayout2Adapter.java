@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -15,14 +14,22 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.bumptech.glide.Glide;
 import com.example.shoppimg.R;
+import com.example.shoppimg.bean.ShoppingBean;
+import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 
-public class SingleLayoutAdapter extends DelegateAdapter.Adapter {
+import java.util.ArrayList;
+
+public class SingleLayout2Adapter extends DelegateAdapter.Adapter {
     private Context context;
     private SingleLayoutHelper singleLayoutHelper;
+    private ArrayList<ShoppingBean.DataBean.BannerBean> bannerBeans;
 
-    public SingleLayoutAdapter(Context context, SingleLayoutHelper singleLayoutHelper) {
+
+    public SingleLayout2Adapter(Context context, SingleLayoutHelper singleLayoutHelper, ArrayList<ShoppingBean.DataBean.BannerBean> bannerBeans) {
         this.context = context;
         this.singleLayoutHelper = singleLayoutHelper;
+        this.bannerBeans = bannerBeans;
     }
 
     @Override
@@ -33,14 +40,20 @@ public class SingleLayoutAdapter extends DelegateAdapter.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_one, null);
-        return new SingleViewHolder(inflate);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_two, null);
+        return new SingleViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         SingleViewHolder holder1= (SingleViewHolder) holder;
-        holder1.oneName.getText();
+        holder1.myBanner.setImages(bannerBeans).setImageLoader(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, Object path, ImageView imageView) {
+                ShoppingBean.DataBean.BannerBean bannerBean= (ShoppingBean.DataBean.BannerBean) path;
+                Glide.with(context).load(bannerBean.getImage_url()).into(imageView);
+            }
+        }).start();
     }
 
     @Override
@@ -49,12 +62,9 @@ public class SingleLayoutAdapter extends DelegateAdapter.Adapter {
     }
 
     class SingleViewHolder extends RecyclerView.ViewHolder {
-   //     private ImageView oneImg;
-        private EditText oneName;
+        private Banner myBanner;
         public SingleViewHolder(@NonNull View itemView) {
             super(itemView);
-            //oneImg = (ImageView) itemView.findViewById(R.id.one_img);
-            oneName = (EditText) itemView.findViewById(R.id.one_name);
-        }
+            myBanner = (Banner) itemView.findViewById(R.id.my_banner); }
     }
 }
