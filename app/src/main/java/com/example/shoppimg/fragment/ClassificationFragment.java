@@ -5,16 +5,17 @@ import android.view.View;
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.mvplibrary.base.BasePresenter;
 import com.example.shoppimg.R;
+import com.example.shoppimg.presenter.MainPresenter;
 
-public class ClassificationFragment extends BaseFragment {
+public class ClassificationFragment extends BaseFragment<MainPresenter> {
     @Override
-    protected BasePresenter getPresnter() {
-        return null;
+    protected MainPresenter getPresnter() {
+        return new MainPresenter();
     }
 
     @Override
     protected void initData() {
-
+        presenter.onStart1();
     }
 
     @Override
