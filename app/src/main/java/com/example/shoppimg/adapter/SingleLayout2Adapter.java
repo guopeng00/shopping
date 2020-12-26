@@ -22,25 +22,25 @@ import java.util.ArrayList;
 
 public class SingleLayout2Adapter extends DelegateAdapter.Adapter {
     private Context context;
-    private SingleLayoutHelper singleLayoutHelper;
+    private SingleLayoutHelper singleLayoutHelper2;
     private ArrayList<ShoppingBean.DataBean.BannerBean> bannerBeans;
 
 
     public SingleLayout2Adapter(Context context, SingleLayoutHelper singleLayoutHelper, ArrayList<ShoppingBean.DataBean.BannerBean> bannerBeans) {
         this.context = context;
-        this.singleLayoutHelper = singleLayoutHelper;
+        this.singleLayoutHelper2 = singleLayoutHelper;
         this.bannerBeans = bannerBeans;
     }
 
     @Override
     public LayoutHelper onCreateLayoutHelper() {
-        return singleLayoutHelper;
+        return singleLayoutHelper2;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_two, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_two, null);
         return new SingleViewHolder(view);
     }
 

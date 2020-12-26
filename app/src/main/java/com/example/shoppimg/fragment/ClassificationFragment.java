@@ -8,10 +8,10 @@ import com.example.shoppimg.R;
 import com.example.shoppimg.presenter.MainPresenter;
 
 public class ClassificationFragment extends BaseFragment<MainPresenter> {
-    @Override
-    protected MainPresenter getPresnter() {
-        return new MainPresenter();
-    }
+//    @Override
+//    protected MainPresenter getPresnter() {
+//        return new MainPresenter();
+//    }
 
     @Override
     protected void initData() {

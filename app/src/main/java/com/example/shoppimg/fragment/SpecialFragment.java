@@ -9,10 +9,10 @@ import com.example.shoppimg.contract.MainContract;
 import com.example.shoppimg.presenter.MainPresenter;
 
 public class SpecialFragment extends BaseFragment<MainPresenter> implements MainContract.IView {
-    @Override
-    protected MainPresenter getPresnter() {
-        return new MainPresenter();
-    }
+//    @Override
+//    protected MainPresenter getPresnter() {
+//        return new MainPresenter();
+//    }
 
     @Override
     protected void initData() {

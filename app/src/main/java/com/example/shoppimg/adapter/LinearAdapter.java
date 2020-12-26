@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,32 +13,33 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.example.shoppimg.R;
+import com.youth.banner.Banner;
 
-public class SingleLayoutAdapter extends DelegateAdapter.Adapter {
+public class LinearAdapter extends DelegateAdapter.Adapter {
     private Context context;
-    private SingleLayoutHelper singleLayoutHelper1;
+    private SingleLayoutHelper singleLayoutHelper;
 
-    public SingleLayoutAdapter(Context context, SingleLayoutHelper singleLayoutHelper) {
+
+    public LinearAdapter(Context context, SingleLayoutHelper singleLayoutHelper) {
         this.context = context;
-        this.singleLayoutHelper1 = singleLayoutHelper;
+        this.singleLayoutHelper = singleLayoutHelper;
     }
 
     @Override
     public LayoutHelper onCreateLayoutHelper() {
-        return singleLayoutHelper1;
+        return singleLayoutHelper;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_home_one, null);
-        return new Single1ViewHolder(inflate);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.item_home_four1, null);
+        return new SingleViewHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Single1ViewHolder holder1= (Single1ViewHolder) holder;
-        holder1.oneName.getText();
+
     }
 
     @Override
@@ -46,13 +47,11 @@ public class SingleLayoutAdapter extends DelegateAdapter.Adapter {
         return 1;
     }
 
-    class Single1ViewHolder extends RecyclerView.ViewHolder {
-   //     private ImageView oneImg;
-        private EditText oneName;
-        public Single1ViewHolder(@NonNull View itemView) {
+    class SingleViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvHome;
+        public SingleViewHolder(@NonNull View itemView) {
             super(itemView);
-            //oneImg = (ImageView) itemView.findViewById(R.id.one_img);
-            oneName = (EditText) itemView.findViewById(R.id.one_name);
+            tvHome = (TextView) itemView.findViewById(R.id.tv_home_four_name);
         }
     }
 }
