@@ -13,10 +13,15 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.example.mvplibrary.base.BaseFragment;
 import com.example.shoppimg.R;
 import com.example.shoppimg.adapter.GridLayout2Adapter;
+import com.example.shoppimg.adapter.GridLayout3Adapter;
+import com.example.shoppimg.adapter.GridLayout4Adapter;
 import com.example.shoppimg.adapter.GridlayoutAdapter;
+import com.example.shoppimg.adapter.LinearLayout1Adapter;
 import com.example.shoppimg.adapter.SingleLayout2Adapter;
 import com.example.shoppimg.adapter.SingleLayout3Adapter;
 import com.example.shoppimg.adapter.SingleLayout4Adapter;
+import com.example.shoppimg.adapter.SingleLayout5Adapter;
+import com.example.shoppimg.adapter.SingleLayout6Adapter;
 import com.example.shoppimg.adapter.SingleLayoutAdapter;
 import com.example.shoppimg.bean.ShoppingBean;
 import com.example.shoppimg.contract.MainContract;
@@ -46,6 +51,17 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
     private SingleLayout4Adapter mAdapter5;
     private GridLayoutHelper gridLayoutHelper3;
     private ArrayList<ShoppingBean.DataBean.NewGoodsListBean> newGoodsListBeans;
+    private GridLayout3Adapter mAdapter51;
+    private SingleLayoutHelper singleLayoutHelper5;
+    private SingleLayout5Adapter mAdapter6;
+    private GridLayoutHelper gridLayoutHelper4;
+    private ArrayList<ShoppingBean.DataBean.HotGoodsListBean> hotGoodsListBeans;
+    private GridLayout4Adapter mAdapter61;
+    private SingleLayoutHelper singleLayoutHelper6;
+    private SingleLayout6Adapter mAdapter7;
+    private LinearLayoutHelper linearLayoutHelper1;
+    private ArrayList<ShoppingBean.DataBean.TopicListBean> topicListBeans;
+    private LinearLayout1Adapter mAdapter71;
 
 //    @Override
 //    protected MainPresenter getPresnter() {
@@ -90,7 +106,21 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
 
         gridLayoutHelper3 = new GridLayoutHelper(2);
         newGoodsListBeans = new ArrayList<>();
-        mAdapter41 = new GridLayout2Adapter(getActivity(), gridLayoutHelper3, brandListBeans);
+        mAdapter51 = new GridLayout3Adapter(getActivity(), gridLayoutHelper3, newGoodsListBeans);
+
+        singleLayoutHelper5 = new SingleLayoutHelper();
+        mAdapter6 = new SingleLayout5Adapter(getActivity(), singleLayoutHelper5);
+
+        gridLayoutHelper4 = new GridLayoutHelper(1);
+        hotGoodsListBeans = new ArrayList<>();
+        mAdapter61 = new GridLayout4Adapter(getActivity(), gridLayoutHelper4, hotGoodsListBeans);
+
+        singleLayoutHelper6 = new SingleLayoutHelper();
+        mAdapter7 = new SingleLayout6Adapter(getActivity(), singleLayoutHelper6);
+
+        linearLayoutHelper1 = new LinearLayoutHelper();
+        topicListBeans = new ArrayList<>();
+        mAdapter71 = new LinearLayout1Adapter(getActivity(), linearLayoutHelper1, topicListBeans);
 
         adapter = new DelegateAdapter(virtualLayoutManager, false);
         adapter.addAdapter(singleLayoutAdapter1);//第一行
@@ -99,6 +129,10 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
         adapter.addAdapter(mAdapter4);//第四行
         adapter.addAdapter(mAdapter41);//第五行
         adapter.addAdapter(mAdapter5);//第五行
+        adapter.addAdapter(mAdapter51);//第五行
+        adapter.addAdapter(mAdapter6);//第五行
+        adapter.addAdapter(mAdapter61);//第五行
+        adapter.addAdapter(mAdapter7);//第五行
 
         rlvHome.setLayoutManager(virtualLayoutManager);
         rlvHome.setAdapter(adapter);
@@ -122,6 +156,12 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
             List<ShoppingBean.DataBean.BrandListBean> brandList = shoppingBean.getData().getBrandList();
             brandListBeans.addAll(brandList);
             mAdapter41.notifyDataSetChanged();
+            List<ShoppingBean.DataBean.NewGoodsListBean> newGoodsList = shoppingBean.getData().getNewGoodsList();
+            newGoodsListBeans.addAll(newGoodsList);
+            mAdapter51.notifyDataSetChanged();
+            List<ShoppingBean.DataBean.HotGoodsListBean> hotGoodsList = shoppingBean.getData().getHotGoodsList();
+            hotGoodsListBeans.addAll(hotGoodsList);
+            mAdapter61.notifyDataSetChanged();
         }
 
     }
