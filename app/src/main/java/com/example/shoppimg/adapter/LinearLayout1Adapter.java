@@ -4,17 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
-import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
-import com.bumptech.glide.Glide;
 import com.example.shoppimg.R;
 import com.example.shoppimg.bean.ShoppingBean;
 
@@ -24,6 +21,7 @@ public class LinearLayout1Adapter extends DelegateAdapter.Adapter {
     private Context context;
     private LinearLayoutHelper linearLayoutHelper1;
     private ArrayList<ShoppingBean.DataBean.TopicListBean> topicListBeans;
+    private Linear11Adapter mAdapter;
 
     public LinearLayout1Adapter(Context context, LinearLayoutHelper linearLayoutHelper1, ArrayList<ShoppingBean.DataBean.TopicListBean> topicListBeans) {
         this.context = context;
@@ -39,35 +37,31 @@ public class LinearLayout1Adapter extends DelegateAdapter.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_six2, null);
-        return new GridLayout4ViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_seven2, parent,false);
+        return new Linear1ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        GridLayout4ViewHolder holder1= (GridLayout4ViewHolder) holder;
-        ShoppingBean.DataBean.HotGoodsListBean brandListBean = hotGoodsListBeans.get(position);
-        holder1.tvHomeGird4Name.setText(brandListBean.getName());
-        holder1.tvHomeGird4Text.setText(brandListBean.getGoods_brief());
-        holder1.tvHomeGrid4Sprice.setText("￥"+brandListBean.getRetail_price());
-        Glide.with(context).load(brandListBean.getList_pic_url()).into(holder1.ivHomeGrid4Img);
+        Linear1ViewHolder holder1= (Linear1ViewHolder) holder;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        holder1.rlvHomeLinear.setLayoutManager(linearLayoutManager);
+        mAdapter = new Linear11Adapter(context, topicListBeans);
+        holder1.rlvHomeLinear.setAdapter(mAdapter);
+
     }
 
     @Override
     public int getItemCount() {
-        return hotGoodsListBeans.size();
+        return 1;
     }
-    class GridLayout4ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivHomeGrid4Img;
-        private TextView tvHomeGird4Name;
-        private TextView tvHomeGird4Text;
-        private TextView tvHomeGrid4Sprice;
-        public GridLayout4ViewHolder(@NonNull View itemView) {
+
+    class Linear1ViewHolder extends RecyclerView.ViewHolder {
+        private RecyclerView rlvHomeLinear;
+        public Linear1ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivHomeGrid4Img = (ImageView) itemView.findViewById(R.id.iv_home_grid4_img);
-            tvHomeGird4Name = (TextView) itemView.findViewById(R.id.tv_home_gird4_name);
-            tvHomeGird4Text = (TextView) itemView.findViewById(R.id.tv_home_grid4_text);
-            tvHomeGrid4Sprice = (TextView) itemView.findViewById(R.id.tv_home_grid4_sprice);
+            rlvHomeLinear = (RecyclerView) itemView.findViewById(R.id.rlv_home_linear);
         }
     }
 }

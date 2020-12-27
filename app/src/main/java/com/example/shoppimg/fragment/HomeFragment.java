@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
@@ -17,6 +18,7 @@ import com.example.shoppimg.adapter.GridLayout3Adapter;
 import com.example.shoppimg.adapter.GridLayout4Adapter;
 import com.example.shoppimg.adapter.GridlayoutAdapter;
 import com.example.shoppimg.adapter.LinearLayout1Adapter;
+import com.example.shoppimg.adapter.LinearLayout2Adapter;
 import com.example.shoppimg.adapter.SingleLayout2Adapter;
 import com.example.shoppimg.adapter.SingleLayout3Adapter;
 import com.example.shoppimg.adapter.SingleLayout4Adapter;
@@ -62,6 +64,11 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
     private LinearLayoutHelper linearLayoutHelper1;
     private ArrayList<ShoppingBean.DataBean.TopicListBean> topicListBeans;
     private LinearLayout1Adapter mAdapter71;
+    private GridLayoutHelper gridLayoutHelper5;
+    private ColumnLayoutHelper columnLayoutHelper1;
+    private LinearLayoutHelper linearLayoutHelper2;
+    private ArrayList<ShoppingBean.DataBean.CategoryListBean> categoryListBeans;
+    private LinearLayout2Adapter mAdapter8;
 
 //    @Override
 //    protected MainPresenter getPresnter() {
@@ -119,8 +126,14 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
         mAdapter7 = new SingleLayout6Adapter(getActivity(), singleLayoutHelper6);
 
         linearLayoutHelper1 = new LinearLayoutHelper();
+        gridLayoutHelper5 = new GridLayoutHelper(3);
+        columnLayoutHelper1 = new ColumnLayoutHelper();
         topicListBeans = new ArrayList<>();
-        mAdapter71 = new LinearLayout1Adapter(getActivity(), linearLayoutHelper1, topicListBeans);
+         mAdapter71= new LinearLayout1Adapter(getActivity(), linearLayoutHelper1, topicListBeans);
+
+        linearLayoutHelper2 = new LinearLayoutHelper();
+        categoryListBeans = new ArrayList<>();
+        mAdapter8 = new LinearLayout2Adapter(getActivity(), linearLayoutHelper2, categoryListBeans);
 
         adapter = new DelegateAdapter(virtualLayoutManager, false);
         adapter.addAdapter(singleLayoutAdapter1);//第一行
@@ -133,6 +146,8 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
         adapter.addAdapter(mAdapter6);//第五行
         adapter.addAdapter(mAdapter61);//第五行
         adapter.addAdapter(mAdapter7);//第五行
+        adapter.addAdapter(mAdapter71);//第五行
+        adapter.addAdapter(mAdapter8);
 
         rlvHome.setLayoutManager(virtualLayoutManager);
         rlvHome.setAdapter(adapter);
@@ -162,6 +177,13 @@ public class HomeFragment extends BaseFragment<MainPresenter> implements MainCon
             List<ShoppingBean.DataBean.HotGoodsListBean> hotGoodsList = shoppingBean.getData().getHotGoodsList();
             hotGoodsListBeans.addAll(hotGoodsList);
             mAdapter61.notifyDataSetChanged();
+            List<ShoppingBean.DataBean.TopicListBean> topicList = shoppingBean.getData().getTopicList();
+            topicListBeans.addAll(topicList);
+            mAdapter71.notifyDataSetChanged();
+
+            List<ShoppingBean.DataBean.CategoryListBean> categoryList = shoppingBean.getData().getCategoryList();
+            categoryListBeans.addAll(categoryList);
+            mAdapter8.notifyDataSetChanged();
         }
 
     }
